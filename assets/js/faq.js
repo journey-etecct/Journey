@@ -19,7 +19,6 @@ faqItems.forEach((item) => {
   });
 });
 
-
 let infos = {
   nome: '',
   email: '',
@@ -63,4 +62,3 @@ window.addEventListener('click', (event) => {
     successModal.style.display = "none";
   }
 });
-

@@ -1,3 +1,0 @@
-[build]
-command = "composer install"
-publish = "/opt/build/repo"

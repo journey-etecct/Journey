@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $mensagem = $_POST["mensagem"];
 
-    $sendgridApiKey = $_SERVER['SENDGRID_API_KEY'];
+    $sendgridApiKey = getenv('SENDGRID_API_KEY');
+    var_dump($sendgridApiKey);
 
     $emailObj = new Mail();
     $from = new From('joaopinto9179@gmail.com', 'Journey');
@@ -25,6 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $sendgrid->send($emailObj);
         $response["success"] = true;
+        
+
     } catch (Exception $e) {
         error_log("SendGrid Exception: " . $e->getMessage());
         $response["error"] = "Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.";

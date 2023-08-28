@@ -12,6 +12,45 @@
 </head>
 
 <body>
+<?php
+require './assets/lib/vendor/autoload.php';
+
+use SendGrid\Mail\Mail;
+use SendGrid\Mail\From;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $mensagem = $_POST["mensagem"];
+
+    $sendgridApiKey = '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';
+
+    $emailObj = new Mail();
+    $from = new From('joaopinto9179@gmail.com', 'Journey');
+    $emailObj->setFrom($from);
+    $emailObj->setSubject('Journey - Seção Contato');
+    $emailObj->addTo('joaopinto9179@gmail.com', 'Journey');
+    $emailObj->addContent("text/plain", "Uma nova mensagem foi recebida da seção contato\n\nNome: $nome\nEmail: $email\nMensagem:\n$mensagem");
+
+    $sendgrid = new \SendGrid($sendgridApiKey);
+
+    try {
+        $response = $sendgrid->send($emailObj);
+
+        if ($response->statusCode() === 202) {
+            $envioMensagem = "Dados enviados com sucesso!";
+            $envioStatus = "success";
+        } else {
+            $envioMensagem = "Ocorreu um erro ao enviar os dados.";
+            $envioStatus = "error";
+        }
+    } catch (\Exception $e) {
+        $envioMensagem = "Ocorreu um erro ao enviar os dados: " . $e->getMessage();
+        $envioStatus = "error";
+    }
+}
+?>
+
   <div class="header-w3l">
     <header id="site-header" class="fixed-top">
       <div class="container">
@@ -561,6 +600,7 @@
               <button class="btn btn-style btn-primary" id="enviar">Enviar Mensagem</button>
             </div>
           </form>
+          <p><?php echo $envioMensagem; ?></p>
         </div>
       </div>
     </div>

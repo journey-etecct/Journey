@@ -19,12 +19,18 @@ faqItems.forEach((item) => {
   });
 });
 
+
+
+
+
+/*
 let infos = {
   nome: '',
   email: '',
   sujeito: '',
   mensagem: ''
 }
+
 
 let nome = document.querySelector("#nome")
 let email = document.querySelector("#email")
@@ -62,3 +68,4 @@ window.addEventListener('click', (event) => {
     successModal.style.display = "none";
   }
 });
+*/

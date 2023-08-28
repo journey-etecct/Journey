@@ -1,5 +1,5 @@
 <?php
-require './assets/lib/vendor/autoload.php';
+require '../.././assets/lib/vendor/autoload.php';
 
 use SendGrid\Mail\Mail;
 use SendGrid\Mail\From;
@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $mensagem = $_POST["mensagem"];
 
-    $sendgridApiKey = getenv('SENDGRID_API_KEY');
+    $sendgridApiKey = "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";
 
     $emailObj = new Mail();
     $from = new From('joaopinto9179@gmail.com', 'Journey');

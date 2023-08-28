@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $mensagem = $_POST["mensagem"];
 
-    $sendgridApiKey = "getenv('SENDGRID_API_KEY')";
+    $sendgridApiKey = "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";
 
     $emailObj = new Mail();
     $from = new From('joaopinto9179@gmail.com', 'Journey');

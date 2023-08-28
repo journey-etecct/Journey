@@ -32,7 +32,7 @@
             },
             "time": "2022-03-09T20:21:55+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "SendGrid\\": "lib/"
@@ -69,17 +69,17 @@
         },
         {
             "name": "sendgrid/sendgrid",
-            "version": "8.0.1",
-            "version_normalized": "8.0.1.0",
+            "version": "7.11.5",
+            "version_normalized": "7.11.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sendgrid/sendgrid-php.git",
-                "reference": "285381257100b73aa50d8d70f0bcfb1f48b63747"
+                "reference": "1d2fd3b72687fe82264853a8888b014f8f99e81f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/285381257100b73aa50d8d70f0bcfb1f48b63747",
-                "reference": "285381257100b73aa50d8d70f0bcfb1f48b63747",
+                "url": "https://api.github.com/repos/sendgrid/sendgrid-php/zipball/1d2fd3b72687fe82264853a8888b014f8f99e81f",
+                "reference": "1d2fd3b72687fe82264853a8888b014f8f99e81f",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
-                "php": ">=7.3",
+                "php": ">=5.6",
                 "sendgrid/php-http-client": "~3.10",
                 "starkbank/ecdsa": "0.*"
             },
@@ -95,14 +95,13 @@
                 "sendgrid/sendgrid-php": "*"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.5",
-                "phpunit/phpunit": "^9",
+                "phpunit/phpunit": "^5.7.9 || ^6.4.3",
                 "squizlabs/php_codesniffer": "3.*",
                 "swaggest/json-diff": "^3.4"
             },
-            "time": "2022-08-10T18:37:45+00:00",
+            "time": "2022-03-09T20:21:56+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "SendGrid\\Mail\\": "lib/mail/",
@@ -131,7 +130,8 @@
                 "twilio sendgrid"
             ],
             "support": {
-                "source": "https://github.com/sendgrid/sendgrid-php/tree/8.0.1"
+                "issues": "https://github.com/sendgrid/sendgrid-php/issues",
+                "source": "https://github.com/sendgrid/sendgrid-php/tree/7.11.5"
             },
             "install-path": "../sendgrid/sendgrid"
         },
@@ -155,7 +155,7 @@
             },
             "time": "2021-06-06T22:24:49+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "files": [
                     "src/ellipticcurve.php"

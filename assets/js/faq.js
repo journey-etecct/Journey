@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const data = { nome, email, mensagem };
 
     try {
-      const response = await fetch('/assets/functions/send-email/', {
+      const response = await fetch('/functions/send-email/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

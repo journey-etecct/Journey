@@ -1,3 +1,3 @@
 [build]
-command = "composer install && php functions/send-email/index.php"
-publish = "/"
+command = "composer install"
+publish = "/opt/build/repo"

@@ -3,6 +3,7 @@ require './assets/lib/vendor/autoload.php';
 
 use SendGrid\Mail\Mail;
 use SendGrid\Mail\From;
+var_dump(getenv('SENDGRID_API_KEY'));
 
 $response = ["success" => false];
 

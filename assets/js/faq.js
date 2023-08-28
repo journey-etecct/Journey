@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
 
-    fetch("functions/send-email/", {
+    fetch("functions/send-email/index.php", {
       method: "POST",
       body: formData,
     })

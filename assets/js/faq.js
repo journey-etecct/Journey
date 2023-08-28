@@ -26,32 +26,38 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contactForm");
   const modal = document.getElementById("successModal");
   const closeButton = modal.querySelector(".close");
+  
+  document.querySelector("#enviar").addEventListener('click', async (e) => {
+    e.preventDefault();
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
+    const nome = document.querySelector("#nome").value;
+    const email = document.querySelector("#email").value;
+    const mensagem = document.querySelector("#mensagem").value;
 
-    const formData = new FormData(form);
+    const data = { nome, email, mensagem };
 
-    fetch("contato.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Server Response:", data);
-    
-        if (data.success) {
-          modal.style.display = "block";
-        } else {
-          showAlert(data.error || "Erro ao enviar a mensagem. Por favor, tente novamente.");
-        }
-      })
-      .catch(error => {
-        console.error("Fetch Error:", error);
-        showAlert("Ocorreu um erro ao processar a solicitação. Por favor, tente novamente mais tarde.");
+    try {
+      const response = await fetch('/functions/send-email/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       });
-    
+
+      const responseData = await response.json();
+
+      if (responseData.success) {
+        modal.style.display = "block";
+        alert('Dados enviados com sucesso!');
+      } else {
+        alert('Ocorreu um erro ao enviar os dados. Por favor, tente novamente.');
+      }
+    } catch (error) {
+      console.error('Erro na chamada da função de servidor:', error);
+    }
   });
+
 
   closeButton.addEventListener("click", function () {
     modal.style.display = "none";

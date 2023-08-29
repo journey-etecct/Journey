@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
  
-    fetch("https://journey-omega.vercel.app/functions/send-email/", {
+    fetch("", {
       method: "POST",
       body: formData,
     })

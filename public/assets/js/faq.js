@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const formData = new FormData(form);
  
-    fetch("", {
+    fetch("https://journey-back.vercel.app/api/contato.php", {
       method: "POST",
       body: formData,
     })

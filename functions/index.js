@@ -2,17 +2,19 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const emailjs = require('emailjs-com');
 
-const express = require('express');
-const app = express();
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'POST')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'POST') {
 
-const corsOrigin = process.env.CORS_ORIGIN || 'https://journey-etecct.web.app';
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
-  next();
-});
-
-admin.initializeApp();
+    admin.initializeApp();
 const db = admin.firestore();
 
 exports.sendEmail = functions.https.onRequest(async (req, res) => {
@@ -45,7 +47,15 @@ exports.sendEmail = functions.https.onRequest(async (req, res) => {
 });
 
 
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
 
-app.listen(3000, () => {
-  console.log('Servidor está executando na porta 3000');
-});
+const handler = (req, res) => {
+  const d = new Date()
+  res.end(d.toString())
+}
+
+module.exports = allowCors(handler)

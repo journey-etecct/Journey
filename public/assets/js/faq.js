@@ -21,67 +21,13 @@ faqItems.forEach((item) => {
 
 
 // Contato e Modal
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contactForm");
-  const modal = document.getElementById("successModal");
-  const closeButton = modal.querySelector(".close");
 
-  form.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-
-      fetch("/enviarEmail", {
-          method: "POST",
-          body: formData,
-      })
-          .then(response => response.json())
-          .then(data => {
-              if (data.success) {
-                  modal.style.display = "block";
-              } else {
-                  showAlert(data.error || "Erro ao enviar a mensagem. Por favor, tente novamente.");
-              }
-          })
-          .catch(error => {
-              console.error("Fetch Error:", error);
-              showAlert("Ocorreu um erro ao processar a solicitação. Por favor, tente novamente mais tarde.");
-          });
-
-  });
-
-  closeButton.addEventListener("click", function () {
-    modal.style.display = "none";
-  });
-
-  function showAlert(message) {
-    const alertDiv = document.createElement("div");
-    alertDiv.className = "alert";
-    alertDiv.textContent = message;
-    form.insertBefore(alertDiv, form.firstChild);
-
-    setTimeout(() => {
-      alertDiv.remove();
-    }, 5000);
-  }
-});
-
-
-
-
-
-
-
-
-
-/*
 let infos = {
   nome: '',
   email: '',
   sujeito: '',
   mensagem: ''
 }
-
 
 let nome = document.querySelector("#nome")
 let email = document.querySelector("#email")
@@ -102,11 +48,23 @@ enviar.addEventListener('click', async (e) => {
       return;
     }
 
-    await emailjs.send('service_15ur3yc', 'template_877lf6q', infos, 'LSTFzKHBdyB9X8kSN');
-    
-    successModal.style.display = "block";
+    const response = await fetch("", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(infos),
+    });
+
+    const responseData = await response.text();
+
+    if (responseData === 'E-mail enviado com sucesso') {
+      successModal.style.display = "block";
+    } else {
+      console.log("Erro ao enviar e-mail:", responseData);
+    }
   } catch (err) {
-    console.log(err);
+    console.error("Erro ao enviar e-mail:", err);
   }
 });
 
@@ -119,4 +77,3 @@ window.addEventListener('click', (event) => {
     successModal.style.display = "none";
   }
 });
-*/

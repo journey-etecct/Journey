@@ -48,7 +48,7 @@ enviar.addEventListener('click', async (e) => {
       return;
     }
 
-    const response = await fetch("", {
+    const response = await fetch("https://backjourney-daniel-uik-journey-etecct.vercel.app/functions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

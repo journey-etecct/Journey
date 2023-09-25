@@ -1,42 +1,43 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
-const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
-
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
-
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-
+const functions = require('firebase-functions');
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
 const emailjs = require('emailjs-com');
+
+const app = express();
+
+app.use(cors());
 
 emailjs.init('LSTFzKHBdyB9X8kSN');
 
-exports.sendEmail = functions.https.onRequest(async (request, response) => {
-  const { nome, email, mensagem } = request.body;
-
+app.post('/sendEmail', async (req, res) => {
   try {
-    const result = await emailjs.send('service_15ur3yc', 'template_877lf6q', {
-      to: 'journeycompany2023@gmail.com',
-      from_name: nome,
-      message: mensagem,
-    });
+    const { nome, email, mensagem } = req.body;
 
-    console.log('E-mail enviado com sucesso:', result);
+    if (!nome || !email || !mensagem) {
+      return res.status(400).json({ error: 'Por favor, preencha todos os campos obrigatórios.' });
+    }
 
-    response.status(200).send('E-mail enviado com sucesso');
+    const emailData = {
+      service_id: 'service_15ur3yc',
+      template_id: 'template_877lf6q',
+      user_id: 'LSTFzKHBdyB9X8kSN',
+      template_params: {
+        to_email: 'journeycompany2023@gmail.com',
+        from_name: nome,
+        message: mensagem,
+      },
+    };
+
+    const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send', emailData);
+
+    console.log('E-mail enviado com sucesso:', response);
+
+    res.status(200).json({ message: 'E-mail enviado com sucesso' });
   } catch (error) {
     console.error('Erro ao enviar e-mail:', error);
-    response.status(500).send('Erro ao enviar e-mail');
+    res.status(500).json({ error: 'Erro ao enviar e-mail' });
   }
 });
+
+exports.api = functions.https.onRequest(app);

@@ -48,15 +48,9 @@ enviar.addEventListener('click', async (e) => {
       return;
     }
 
-    const response = await fetch("https://backjourney-daniel-uik-journey-etecct.vercel.app/functions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(infos),
-    });
+    const response = await axios.post("/sendEmail", infos);
 
-    const responseData = await response.text();
+    const responseData = response.data;
 
     if (responseData === 'E-mail enviado com sucesso') {
       successModal.style.display = "block";

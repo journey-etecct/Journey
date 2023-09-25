@@ -17,16 +17,6 @@
         "firebase-debug.log",
         "firebase-debug.*.log"
       ]
-    },
-    {
-      "source": "email",
-      "codebase": "email",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log"
-      ]
     }
   ]
 }

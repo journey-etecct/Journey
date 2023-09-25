@@ -1,42 +1,35 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 const express = require('express');
-const cors = require('cors');
-const axios = require('axios');
 const emailjs = require('emailjs-com');
+const cors = require('cors')({ origin: true });
 
+admin.initializeApp();
+const db = admin.firestore();
 const app = express();
 
-app.use(cors());
-
-emailjs.init('LSTFzKHBdyB9X8kSN');
+app.use(cors);
 
 app.post('/sendEmail', async (req, res) => {
+  if (!req.body.nome || !req.body.email || !req.body.mensagem) {
+    return res.status(400).send('Campos obrigatórios não preenchidos');
+  }
+
   try {
-    const { nome, email, mensagem } = req.body;
+    const emailService = emailjs;
+    await emailService.send('service_15ur3yc', 'template_877lf6q', req.body, 'LSTFzKHBdyB9X8kSN');
+    
+    await db.collection('mensagens').add({
+      nome: req.body.nome,
+      email: req.body.email,
+      mensagem: req.body.mensagem,
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    });
 
-    if (!nome || !email || !mensagem) {
-      return res.status(400).json({ error: 'Por favor, preencha todos os campos obrigatórios.' });
-    }
-
-    const emailData = {
-      service_id: 'service_15ur3yc',
-      template_id: 'template_877lf6q',
-      user_id: 'LSTFzKHBdyB9X8kSN',
-      template_params: {
-        to_email: 'journeycompany2023@gmail.com',
-        from_name: nome,
-        message: mensagem,
-      },
-    };
-
-    const response = await axios.post('https://api.emailjs.com/api/v1.0/email/send', emailData);
-
-    console.log('E-mail enviado com sucesso:', response);
-
-    res.status(200).json({ message: 'E-mail enviado com sucesso' });
+    res.status(200).send('E-mail enviado com sucesso');
   } catch (error) {
     console.error('Erro ao enviar e-mail:', error);
-    res.status(500).json({ error: 'Erro ao enviar e-mail' });
+    res.status(500).send('Erro ao processar a solicitação');
   }
 });
 

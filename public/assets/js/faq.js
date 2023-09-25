@@ -19,20 +19,18 @@ faqItems.forEach((item) => {
   });
 });
 
-
 // Contato e Modal
 
 let infos = {
   nome: '',
   email: '',
-  sujeito: '',
   mensagem: ''
-}
+};
 
-let nome = document.querySelector("#nome")
-let email = document.querySelector("#email")
-let mensagem = document.querySelector("#mensagem")
-let enviar = document.querySelector("#enviar")
+let nome = document.querySelector("#nome");
+let email = document.querySelector("#email");
+let mensagem = document.querySelector("#mensagem");
+let enviar = document.querySelector("#enviar");
 let successModal = document.getElementById("successModal");
 let closeModal = document.querySelector(".close");
 
@@ -48,7 +46,7 @@ enviar.addEventListener('click', async (e) => {
       return;
     }
 
-    const response = await axios.post("/sendEmail", infos);
+    const response = await axios.post("https://us-central1-journey-etecct.cloudfunctions.net/sendEmail", infos);
 
     const responseData = response.data;
 

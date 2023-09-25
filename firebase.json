@@ -19,8 +19,8 @@
       ]
     },
     {
-      "source": "emailjs",
-      "codebase": "emailjs",
+      "source": "email",
+      "codebase": "email",
       "ignore": [
         "node_modules",
         ".git",

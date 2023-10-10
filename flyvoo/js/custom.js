@@ -10,7 +10,6 @@ getYear();
 document.addEventListener(
   "scroll",
   (e) => {
-    console.log(document.documentElement.scrollTop);
     const scroll = document.documentElement.scrollTop;
     const header = document.querySelector(".header_section");
 

@@ -233,7 +233,7 @@ a:focus {
 }
 .slider_section .detail-box p {
   color: #fefefe;
-  font-size: 14px;
+  font-size: 1.1em;
 }
 .slider_section .detail-box .btn-box {
   display: flex;
@@ -259,6 +259,12 @@ a:focus {
 .slider_section .detail-box .btn-box .btn1:hover {
   background-color: #076964;
 }
+.slider_section .detail-box .btn-box .btn1.download:hover, .slider_section .detail-box .btn-box .btn1.site:hover {
+  background-color: #373737;
+}
+.slider_section .detail-box .btn-box .btn1.download, .slider_section .detail-box .btn-box .btn1.site {
+  background-color: #444;
+}
 .slider_section .detail-box .btn-box .btn2 {
   display: inline-block;
   padding: 10px 15px;
@@ -271,6 +277,9 @@ a:focus {
 }
 .slider_section .detail-box .btn-box .btn2:hover {
   background-color: black;
+}
+.slider_section .detail-box .btn-box .btn2.download:hover, .slider_section .detail-box .btn-box .btn2.site:hover {
+  background-color: #373737;
 }
 .slider_section .img-box {
   margin: 45px 0;
@@ -365,6 +374,9 @@ a:focus {
 .service_section .btn-box a:hover {
   background-color: #076964;
 }
+.service_section .btn-box a.download:hover, .service_section .btn-box a.site:hover {
+  background-color: #373737;
+}
 
 .about_section {
   background-color: #010101;
@@ -398,6 +410,9 @@ a:focus {
 }
 .about_section .detail-box a:hover {
   background-color: #076964;
+}
+.about_section .detail-box a.download:hover, .about_section .detail-box a.site:hover {
+  background-color: #373737;
 }
 
 .why_section .box {
@@ -448,6 +463,9 @@ a:focus {
 }
 .why_section .btn-box a:hover {
   background-color: #076964;
+}
+.why_section .btn-box a.download:hover, .why_section .btn-box a.site:hover {
+  background-color: #373737;
 }
 
 /*team section */
@@ -653,6 +671,9 @@ a:focus {
 }
 .info_section form button:hover {
   background-color: #076964;
+}
+.info_section form button.download:hover, .info_section form button.site:hover {
+  background-color: #373737;
 }
 
 /* footer section*/

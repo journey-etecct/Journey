@@ -13,8 +13,10 @@ document.addEventListener(
     const scroll = document.documentElement.scrollTop;
     const header = document.querySelector(".header_section");
 
-    if (scroll > 640) {
-      header.style.background = "#131313";
+    const media = window.matchMedia("(min-width: 992px)");
+
+    if (scroll > (media.matches ? 640 : 50)) {
+      header.style.background = media.matches ? "#131313" : "#222";
     } else {
       header.style.background = "transparent";
     }

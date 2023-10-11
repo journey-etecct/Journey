@@ -27,6 +27,11 @@ $textCol: #1f1f1f;
   &:hover {
     background-color: darken($color: $col1, $amount: 15);
   }
+
+  &.download:hover,
+  &.site:hover {
+    background-color: darken($color: #444, $amount: 5);
+  }
 }
 
 @mixin upperBold {
@@ -310,7 +315,7 @@ a:focus {
 
     p {
       color: #fefefe;
-      font-size: 14px;
+      font-size: 1.1em;
     }
 
     .btn-box {
@@ -327,6 +332,11 @@ a:focus {
       .btn1 {
         @include hero_btn($primary1, $white, 10px, 15px, 0);
         cursor: pointer;
+
+        &.download,
+        &.site {
+          background-color: #444
+        }
       }
 
       .btn2 {

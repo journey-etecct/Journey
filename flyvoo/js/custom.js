@@ -22,6 +22,6 @@ document.addEventListener(
   true
 );
 
-$(".btn1").on("click", () => {
+$("#btn1").on("click", () => {
   window.scroll({ top: 800, behavior: "smooth" });
 });
